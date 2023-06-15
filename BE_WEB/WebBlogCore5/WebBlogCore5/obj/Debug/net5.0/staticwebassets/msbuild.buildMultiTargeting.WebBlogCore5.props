@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\WebBlogCore5.props" />
+</Project>

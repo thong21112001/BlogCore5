@@ -1,0 +1,115 @@
+﻿@model WebBlogCore5.Models.Category
+
+@{
+    ViewData["Title"] = "CHỈNH SỬA DANH MỤC";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="slim-pageheader">
+    <ol class="breadcrumb slim-breadcrumb">
+        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">HOME</a></li>
+        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Categories" asp-action="Index">QUẢN LÝ DANH MỤC</a></li>
+        <li class="breadcrumb-item"><a href="#">CHỈNH SỬA</a></li>
+    </ol>
+    <h6 class="slim-pagetitle">CHỈNH SỬA DANH MỤC</h6>
+</div><!-- slim-pageheader -->
+
+
+<div class="section-wrapper">
+    <form asp-area="Admin" asp-controller="Categories" asp-action="Edit" asp-route-id="@Model.CateId" method="post" enctype="multipart/form-data">
+        <div class="form-layout">
+            <input type="hidden" asp-for="CateId" />
+            <input type="hidden" asp-for="Alias" />
+            <input type="hidden" asp-for="Thumb" />
+            <input type="hidden" asp-for="Icon" />
+            <input type="hidden" asp-for="Cover" />
+            <div class="row mg-b-25">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="form-control-label">Tên danh mục: <span class="tx-danger">*</span></label>
+                        <input class="form-control" type="text" asp-for="CateName">
+                    </div>
+                </div><!-- col-4 -->
+
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="form-control-label">Danh mục cha: <span class="tx-danger">*</span></label>
+                        <select class="form-control select2" asp-for="Parents" asp-items="@ViewBag.DanhMucGoc" required>
+                            <option value="0" selected>Danh mục gốc</option>
+                        </select>
+                    </div>
+                </div><!-- col-4 -->
+
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="form-control-label">Sắp xếp: <span class="tx-danger">*</span></label>
+                        <input class="form-control" type="number" value="0" asp-for="Ordering">
+                    </div>
+                </div><!-- col-4 -->
+
+                <div class="col-lg-12">
+                    <div class="form-group mg-b-10-force">
+                        <label class="form-control-label">Mô tả: <span class="tx-danger">*</span></label>
+                        <input class="form-control" type="text" asp-for="Description">
+                    </div>
+                </div><!-- col-12 -->
+
+                <div class="col-lg-6">
+                    <div class="form-group mg-b-10-force">
+                        <label class="form-control-label">Ảnh đại diện: <span class="tx-danger">*</span></label>
+                        <input name="fThumb" class="form-control-file" type="file" asp-for="Thumb">
+                    </div>
+                </div><!-- col-6 -->
+
+                <div class="col-lg-6">
+                    <div class="form-group mg-b-10-force">
+                        <label class="form-control-label">Cover: <span class="tx-danger">*</span></label>
+                        <input name="fCover" class="form-control-file" type="file" asp-for="Cover">
+                    </div>
+                </div><!-- col-6 -->
+
+                <div class="col-lg-6">
+                    <div class="form-group mg-b-10-force">
+                        <label class="form-control-label">Icon: <span class="tx-danger">*</span></label>
+                        <input name="fIcon" class="form-control-file" type="file" asp-for="Icon">
+                    </div>
+                </div><!-- col-6 -->
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Trạng thái: <span class="tx-danger">*</span></label>
+                        <br />
+                        @*bỏ phần ? ở bool là được*@
+                        <input type="checkbox" asp-for="Published" /><span>Hiển thị</span>
+                    </div>
+                </div><!-- col-6 -->
+
+                <div class="col-lg-12">
+                    <div class="form-group mg-b-10-force">
+                        <label class="form-control-label">Tiêu đề: <span class="tx-danger">*</span></label>
+                        <input class="form-control" type="text" asp-for="Tittle">
+                    </div>
+                </div><!-- col-12 -->
+
+                <div class="col-lg-12">
+                    <div class="form-group mg-b-10-force">
+                        <label class="form-control-label">MetaKey: <span class="tx-danger">*</span></label>
+                        <input class="form-control" type="text" asp-for="MetaKey">
+                    </div>
+                </div><!-- col-12 -->
+
+                <div class="col-lg-12">
+                    <div class="form-group mg-b-10-force">
+                        <label class="form-control-label">MetaDes: <span class="tx-danger">*</span></label>
+                        <input class="form-control" type="text" asp-for="MetaDes">
+                    </div>
+                </div><!-- col-12 -->
+            </div><!-- row -->
+
+            <div class="form-layout-footer">
+                <button class="btn btn-primary bd-0">Lưu thay đổi</button>
+                <button class="btn btn-secondary bd-0">Hủy</button>
+            </div><!-- form-layout-footer -->
+        </div><!-- form-layout -->
+    </form>
+</div><!-- section-wrapper -->

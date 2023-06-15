@@ -1,0 +1,158 @@
+﻿@model WebBlogCore5.Models.Category
+
+@{
+    ViewData["Title"] = "XÓA DANH MỤC";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="slim-pageheader">
+    <ol class="breadcrumb slim-breadcrumb">
+        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">HOME</a></li>
+        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Roles" asp-action="Index">QUẢN LÝ DANH MỤC</a></li>
+        <li class="breadcrumb-item"><a href="#">XÓA</a></li>
+    </ol>
+    <h6 class="slim-pagetitle">XÓA DANH MỤC</h6>
+</div><!-- slim-pageheader -->
+
+<div class="section-wrapper mg-t-20">
+    <div class="form-layout form-layout-7">
+        <div class="row no-gutters">
+            <div class="col-5 col-sm-4">
+                Category Name:
+            </div><!-- col-4 -->
+            <div class="col-7 col-sm-8">
+                <input asp-for="CateName" class="form-control" type="text" />
+            </div><!-- col-8 -->
+        </div><!-- row -->
+        <div class="row no-gutters">
+            <div class="col-5 col-sm-4">
+                Tittle:
+            </div><!-- col-4 -->
+            <div class="col-7 col-sm-8">
+                <input asp-for="Tittle" class="form-control" type="text" />
+            </div><!-- col-8 -->
+        </div><!-- row -->
+        <div class="row no-gutters">
+            <div class="col-5 col-sm-4">
+                URL:
+            </div><!-- col-4 -->
+            <div class="col-7 col-sm-8">
+                <input asp-for="Alias" class="form-control" type="text" />
+            </div><!-- col-8 -->
+        </div><!-- row -->
+        <div class="row no-gutters">
+            <div class="col-5 col-sm-4">
+                Meta Description:
+            </div><!-- col-4 -->
+            <div class="col-7 col-sm-8">
+                <input asp-for="MetaDes" class="form-control" type="text" />
+            </div><!-- col-8 -->
+        </div><!-- row -->
+        <div class="row no-gutters">
+            <div class="col-5 col-sm-4">
+                Meta Key:
+            </div><!-- col-4 -->
+            <div class="col-7 col-sm-8">
+                <input asp-for="MetaKey" class="form-control" type="text" />
+            </div><!-- col-8 -->
+        </div><!-- row -->
+        <div class="row no-gutters">
+            <div class="col-5 col-sm-4">
+                Published:
+            </div><!-- col-4 -->
+            <div class="col-7 col-sm-8">
+                @if (Model.Published == true)
+                {
+                    <span class="badge badge-primary">Hiển thị</span>
+                }
+                else
+                {
+                    <span class="badge badge-primary">Ẩn</span>
+                }
+            </div><!-- col-8 -->
+        </div><!-- row -->
+        <div class="row no-gutters">
+            <div class="col-5 col-sm-4">
+                Ordering:
+            </div><!-- col-4 -->
+            <div class="col-7 col-sm-8">
+                <input asp-for="Ordering" class="form-control" type="text" />
+            </div><!-- col-8 -->
+        </div><!-- row -->
+        <div class="row no-gutters">
+            <div class="col-5 col-sm-4">
+                Parents:
+            </div><!-- col-4 -->
+            <div class="col-7 col-sm-8">
+                <input asp-for="Parents" class="form-control" type="text" />
+            </div><!-- col-8 -->
+        </div><!-- row -->
+        <div class="row no-gutters">
+            <div class="col-5 col-sm-4">
+                Levels:
+            </div><!-- col-4 -->
+            <div class="col-7 col-sm-8">
+                <input asp-for="Levels" class="form-control" type="text" />
+            </div><!-- col-8 -->
+        </div><!-- row -->
+        <div class="row no-gutters">
+            <div class="col-5 col-sm-4">
+                Thumb:
+            </div><!-- col-4 -->
+            <div class="col-7 col-sm-8">
+                @if (!string.IsNullOrEmpty(Model.Thumb))
+                {
+                    <img width="80" height="80" src="~/images/categories//@Model.Thumb" alt="@Model.CateName" />
+                }
+                else
+                {
+                    <span class="badge badge-danger">NULL</span>
+                }
+            </div><!-- col-8 -->
+        </div><!-- row -->
+        <div class="row no-gutters">
+            <div class="col-5 col-sm-4">
+                Icon:
+            </div><!-- col-4 -->
+            <div class="col-7 col-sm-8">
+                @if (!string.IsNullOrEmpty(Model.Icon))
+                {
+                    <img width="80" height="80" src="~/images/icons//@Model.Icon" alt="@Model.CateName" />
+                }
+                else
+                {
+                    <span class="badge badge-danger">NULL</span>
+                }
+            </div><!-- col-8 -->
+        </div><!-- row -->
+        <div class="row no-gutters">
+            <div class="col-5 col-sm-4">
+                Cover:
+            </div><!-- col-4 -->
+            <div class="col-7 col-sm-8">
+                @if (!string.IsNullOrEmpty(Model.Cover))
+                {
+                    <img width="80" height="80" src="~/images/covers//@Model.Cover" alt="@Model.CateName" />
+                }
+                else
+                {
+                    <span class="badge badge-danger">NULL</span>
+                }
+            </div><!-- col-8 -->
+        </div><!-- row -->
+        <div class="row no-gutters">
+            <div class="col-5 col-sm-4">
+                Description:
+            </div><!-- col-4 -->
+            <div class="col-7 col-sm-8">
+                <input asp-for="Description" class="form-control" type="text" />
+            </div><!-- col-8 -->
+        </div><!-- row -->
+    </div><!-- form-layout -->
+
+    <div style="text-align:center !important;" class="form-layout-footer mg-t-30">
+        <input type="hidden" asp-for="CateId" />
+        <input type="submit" value="Xác nhận xóa" class="btn btn-danger" />
+        <a asp-area="Admin" asp-controller="Categories" asp-action="Index" class="btn btn-secondary bd-0">Hủy</a>
+    </div>
+</div><!-- section-wrapper -->

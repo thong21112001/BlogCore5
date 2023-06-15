@@ -1,0 +1,51 @@
+﻿@model IEnumerable<WebBlogCore5.Models.Role>
+
+@{
+    ViewData["Title"] = "QUẢN LÝ QUYỀN";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="slim-pageheader">
+    <ol class="breadcrumb slim-breadcrumb">
+        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">HOME</a></li>
+        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Roles" asp-action="Index">QUẢN LÝ QUYỀN</a></li>
+    </ol>
+    <h6 class="slim-pagetitle">QUẢN LÝ QUYỀN</h6>
+</div><!-- slim-pageheader -->
+
+<div>
+    <a asp-area="Admin" asp-controller="Roles" asp-action="Create" class="btn btn-primary">TẠO MỚI</a>
+</div>
+
+<div class="section-wrapper">
+        <div class="table-responsive">
+        <table class="table mg-b-0">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>TÊN</th>
+                    <th>THÔNG TIN</th>
+                    <th>CHỨC NĂNG</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count() > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row">@item.RoleId</th>
+                            <td>@item.RoleName</td>
+                            <td>@item.RoleDescription</td>
+                            <td>
+                                <a asp-area="Admin" asp-controller="Roles" asp-action="Details" asp-route-id ="@item.RoleId" class="btn btn-success">XEM</a>
+                                <a asp-area="Admin" asp-controller="Roles" asp-action="Edit" asp-route-id ="@item.RoleId" class="btn btn-warning">SỬA</a>
+                                <a asp-area="Admin" asp-controller="Roles" asp-action="Delete" asp-route-id="@item.RoleId" class="btn btn-danger">XÓA</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div><!-- table-responsive -->
+</div><!-- section-wrapper -->

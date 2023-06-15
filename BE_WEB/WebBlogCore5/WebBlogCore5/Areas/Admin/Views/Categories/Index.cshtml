@@ -1,0 +1,71 @@
+﻿@model PagedList.Core.IPagedList<WebBlogCore5.Models.Category>
+@using PagedList.Core.Mvc
+
+@{
+    ViewData["Title"] = "QUẢN LÝ DANH MỤC";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="slim-pageheader">
+    <ol class="breadcrumb slim-breadcrumb">
+        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">HOME</a></li>
+        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Categories" asp-action="Index">QUẢN LÝ DANH MỤC</a></li>
+    </ol>
+    <h6 class="slim-pagetitle">QUẢN LÝ DANH MỤC</h6>
+</div><!-- slim-pageheader -->
+
+<div>
+    <a asp-area="Admin" asp-controller="Categories" asp-action="Create" class="btn btn-primary">TẠO MỚI</a>
+</div>
+
+<div class="section-wrapper">
+        <div class="table-responsive">
+        <table class="table mg-b-0">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>TÊN DANH MỤC</th>
+                    <th>TRẠNG THÁI</th>
+                    <th>SẮP XẾP</th>
+                    <th>CHỨC NĂNG</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count() > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row">@item.CateId</th>
+                            <td>
+                                @item.CateName
+                            </td>
+                            <td>
+                                @if (item.Published == true)
+                                {
+                                    <span class="badge badge-primary">Hoạt động</span>
+                                }else
+                                {
+                                    <span class="badge badge-primary">Ẩn</span>
+                                }
+                            </td>
+                            <td>
+                                @item.Ordering
+                            </td>
+                            <td>
+                                <a asp-area="Admin" asp-controller="Categories" asp-action="Details" asp-route-id="@item.CateId" class="btn btn-success">XEM</a>
+                                <a asp-area="Admin" asp-controller="Categories" asp-action="Edit" asp-route-id="@item.CateId" class="btn btn-warning">SỬA</a>
+                                <a asp-area="Admin" asp-controller="Categories" asp-action="Delete" asp-route-id="@item.CateId" class="btn btn-danger">XÓA</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div aria-label="Page navigation example">
+            <ul class="pagination">
+                <pager class="pager-container" options="@PagedListRenderOptions.Bootstrap4PageNumbersOnly" list="@Model" asp-area="Admin" asp-action="Index" asp-controller="Categories"/>
+            </ul>
+        </div>
+    </div><!-- table-responsive -->
+</div><!-- section-wrapper -->
